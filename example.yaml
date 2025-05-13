@@ -1,0 +1,59 @@
+apiVersion: backstage.io/v1alpha1
+kind: Template
+metadata:
+  name: create-tekton-pipeline
+  title: Create and Trigger Tekton Pipeline
+  description: Scaffold a new service and trigger a Tekton pipeline
+  tags:
+    - tekton
+    - ci
+    - pipeline
+spec:
+  owner: platform-team
+  type: service
+  parameters:
+    - title: POC Service
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          title: POC
+          description: Service created for POC
+  steps:
+    - id: fetch-base
+      name: Fetch Base Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{ parameters.name }}
+    - id: trigger-pipeline
+      name: Trigger Tekton PipelineRun
+      action: kubernetes:object
+      input:
+        manifest: |
+          apiVersion: tekton.dev/v1
+          kind: PipelineRun
+          metadata:
+            name: sbom-scan-run-backstage
+            namespace: pipelines
+          spec:
+            pipelineRef:
+              name: sbom-scan-pipeline
+            params: []
+            workspaces:
+              - name: shared-data
+                volumeClaimTemplate:
+                  metadata:
+                    name: sbom-pvc
+                  spec:
+                    accessModes: ["ReadWriteOnce"]
+                    resources:
+                      requests:
+                        storage: 1Gi
+
+  output:
+    links:
+      - title: PipelineRun in Tekton
+        url: https://tekton-dashboard.local/pipelineruns
