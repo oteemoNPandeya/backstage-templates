@@ -6,6 +6,7 @@ metadata:
   annotations:
     janus-idp.io/tekton: 'true'
     backstage.io/kubernetes-namespace: pipelines
+    backstage.io/kubernetes-id: tekton-ci-pipelines 
 spec:
   type: namespace
   owner: oteemo-team 
