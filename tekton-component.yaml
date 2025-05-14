@@ -1,21 +1,11 @@
-# apiVersion: backstage.io/v1alpha1
-# kind: Component
-# metadata:
-#   name: sandobox-service
-#   annotations:
-#     janus-idp.io/tekton-enabled: 'true'
-# spec:
-#   type: service
-#   lifecycle: sandbox
-#   owner: team-a
 apiVersion: backstage.io/v1alpha1
-kind: Resource
+kind: Component
 metadata:
-  name: tekton-ci-pipelines
-  title: Tekton Pipelines in pipelines namespace
+  name: sandobox-service
   annotations:
-    janus-idp.io/tekton: 'true'
-    backstage.io/kubernetes-namespace: pipelines
+    janus-idp.io/tekton-enabled: 'true'
 spec:
-  type: namespace
-  owner: my-team
+  type: service
+  lifecycle: sandbox
+  owner: team-a
+
