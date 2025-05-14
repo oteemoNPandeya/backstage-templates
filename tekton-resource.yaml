@@ -8,3 +8,15 @@ metadata:
     backstage.io/kubernetes-namespace: pipelines
 spec:
   type: namespace
+  owner: oteemo-team 
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: oteemo-team
+  description: Team responsible for CI pipelines
+spec:
+  type: team
+  profile:
+    displayName: Oteemo Team
