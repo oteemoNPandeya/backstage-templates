@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: sandobox-service
+  annotations:
+    janus-idp.io/tekton-enabled: 'true'
+spec:
+  type: service
+  lifecycle: sandbox
+  owner: team-a
