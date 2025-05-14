@@ -15,9 +15,9 @@ apiVersion: backstage.io/v1alpha1
 kind: Group
 metadata:
   name: oteemo-team
-  description: Team responsible for CI pipelines
+  description: Oteemo DevOps Team
 spec:
   type: team
   profile:
     displayName: Oteemo Team
-  childern: []
+  children: []
